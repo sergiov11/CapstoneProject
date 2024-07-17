@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="referrer" content="no-referrer">
+        <!-- Including the Mapbox GL CSS file -->
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!-- Including the main.css file for styling -->
+        <link rel="stylesheet" href="css/main.css">
+        <!-- Including the Mapbox GL JS file -->
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+        <!-- ChartJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <title>InterConnection Technology Access Map</title>
+        <link rel="icon" type="image/x-icon" href="data/icicon.png">
+    </head>
+    <body>
+        <header class="nav__bar">
+            <div class="nav__content">
+                <a class="logo active" href="index.html">InterConnection Digital Access Dashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <nav class="nav" id="myTopnav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a class="nav-link active" href="index.html"><i class="fa-solid fa-house-chimney fa-xl"></i></a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav-link active" aria-current="page" onclick="openPopup(1)">
+                                <i class="fa-regular fa-circle-question fa-xl"></i>
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav-link active" aria-current="page" onclick="openPopup(2)">
+                                <i class="fa-solid fa-flag fa-xl"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>  
+        </header>
+        <main class = "body-content">
+            <div id = "popup-container"> 
+                <div id = "description-popup">
+                    <h2> Information <br><br></h2>
+                    <a href="javascript:void(0)" id="closebtn" onclick="closePopup(1)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                    <div id="content-popup">
+                        <h3><strong> About Our Sponsor</strong></h3>
+                            <p>
+                                Our sponsor, InterConnection, is a dynamic nonprofit organization based in Seattle, Washington, committed to bridging the digital divide and promoting environmental responsibility. Their mission revolves around two core principles: equitable access to technology and sustainable e-waste management. They provide free and affordable computers to community members and organizations, ensuring everyone can thrive in our interconnected world. Simultaneously, they tackle the challenge of electronic waste by refurbishing and reusing discarded devices, minimizing their impact on the environment. Collaborating with local communities, schools, and nonprofits creates a positive ripple effect, one computer at a time. <br><br>
+                            </p>
+                        <h3><strong>Project Goals</strong> </h3>
+                            <p>
+                                Our capstone project aims to align more closely with digital equity goals by leveraging existing census data to identify neighborhoods in Seattle with the greatest need for InterConnection's services.
+
+                                We are enhancing the available data by combining various variables to provide new insights. Our approach hopes to enable quick access to critical information, highlighting areas where digital equity can be improved.
+                                <br><br>
+                            </p>
+                        <h3><strong> Glossary </strong></h3>
+                        <p><strong>Area:</strong></p>
+                        <p>
+                            This map represents the various areas in Seattle, displaying their corresponding Census Tract names and numbers. The Census Tract numbers are organized from north to south, starting with 1 in the northernmost area and ending with 121 in the southernmost area.
+                        </p>
+                        <p><strong>Socioeconomic Disadvantage Risk Index:</strong></p>
+                        <p>
+                            Ranks census tracts based on an index of two equally weighted measures:
+                            <ul>
+                                <li>Income below 200% of poverty level</li>
+                                <li>Educational attainment less than a bachelor's degree</li>
+                            </ul>
+                        </p>
+                        <p><strong>Total Population:</strong></p>
+                        <p>
+                            Provides the most recent total population data available for each census tract location from the U.S. Census Bureau.
+                        </p>
+                        <p><strong>Median Number of Devices (Per Household):</strong></p>
+                        <p>
+                            Represents the median number of devices per household, sourced from the Technology Access and Adaptation Survey of 2023 conducted by the city of Seattle.
+                        </p>
+                    </div>
+                </div>
+                <div id = "acknowledge-popup">
+                    <h2> Acknowledgments <br><br> </h2>
+                    <a href="javascript:void(0)" id="closebtn" onclick="closePopup(2)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                    <div id="content-popup">
+                        <h3><strong>Datasets and References</strong></h3>
+                            <p> All the internet access, technology access and Adoption statistics are sourced from the link below:</p>
+                                <ul>
+                                    <li><a href="https://data.seattle.gov/Community/Technology-Access-and-Adoption-Survey-2023/jddv-fz6y">Technology Access and Adoption Survey 2023</a></li>
+                                    <li><a href="https://data.census.gov">United States Census Bureau</a></li>
+                                    <li><a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::racial-and-social-equity-composite-index-current/about">Racial and Social Equity Composite Index Current</a></li>
+                                    <li><a href="https://www.seattle.gov/tech/reports-and-data/about-digital-equity">Seattle IT - About Digital Equity</a></li>
+                                </ul>
+                        <h3><strong>Applied Libraries</strong></h3>
+                            <ul>
+                                <li><a href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css">MapboxGL CSS</a>,</li>
+                                <li><a href="https://docs.mapbox.com/mapbox-gl-js/api/">MapboxGL JS</a>,</li>
+                                <li><a href="https://docs.mapbox.com/mapbox-gl-js/api/">Mapbox style overlay</a> for the base map,</li>
+                                <li><a href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">ChartJS</a> for interactive charts,</li>
+                                <li><a href="https://fontawesome.com/">Font Awesome</a> for icons, and</li>
+                                <li><a href="https://github.com/">Github</a> for static site hosting service</li>
+                            </ul>
+                    </div>
+                </div>    
+            </div>
+            <div id="map-container">
+                <div id="map"></div>
+                <div class='map-overlay' id='legend'>
+                    <strong>Socioeconomic Disadvantage Risk Index |</strong>
+                </div>
+                <a href="javascript:void(0)" id="openbtn">
+                    <i class="fa fa-bars" onclick="openNav()"></i>
+                </a>
+            </div>
+            <div id="side-container">
+                
+                <div id='features'>
+                    <h2><b>Digital Access Statistics</b></h2>
+                    <div id='text-description'>
+                        <p>Click on a Neighborhood!</p>
+                    </div>
+                </div>
+                <!--
+                <div id="chart-container">
+                    <canvas id="line-chart"></canvas>
+                </div> 
+                -->
+                <div id="side-panel">
+                    <h3>Digital Access Data by Census Tract</h3>
+                    <table>
+                        <tr> 
+                            <th>Area</th>
+                            <th>Risk Index<i id="risk-button" class="fa fa-fw fa-sort"></i></th>
+                            <th>Total Population<i id="mean-income-button" class="fa fa-fw fa-sort"></i></th>
+                            <th>Total Devices<i id="device-button" class="fa fa-fw fa-sort"></i></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <script src="js/main.js"></script>
+    </body>
+</html>
